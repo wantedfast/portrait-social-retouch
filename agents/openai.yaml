@@ -1,0 +1,4 @@
+interface:
+  display_name: "人像社交媒体精修"
+  short_description: "高清冷白肤色、自然薄肌、无痕脸部精修与社交媒体遮脸发布方案"
+  default_prompt: "使用 $portrait-social-retouch 精修这张人像，并输出适合社交媒体发布的自然版本。"
