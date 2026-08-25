@@ -1,4 +1,4 @@
 interface:
-  display_name: "人像社交媒体精修"
-  short_description: "高清冷白肤色、自然薄肌、无痕脸部精修与社交媒体遮脸发布方案"
-  default_prompt: "使用 $portrait-social-retouch 精修这张人像，并输出适合社交媒体发布的自然版本。"
+  display_name: "原生肌肉塑光精修"
+  short_description: "基于原有肌肉证据，通过自然方向光显现真实肌肉纹理与轮廓"
+  default_prompt: "使用 $portrait-social-retouch 基于原图真实肌肉轮廓进行自然塑光显肌，不增加肌肉体积或改变身材比例。"

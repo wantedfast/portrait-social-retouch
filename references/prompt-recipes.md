@@ -1,50 +1,78 @@
 # Prompt Recipes
 
-Read this file when composing an edit prompt. Use only the modules required by the request, and repeat the preservation block every time.
+Read this file for every image edit. Use the muscle-evidence and relighting modules by default. Add optional modules only when needed.
 
-## Base identity-preserve block
+## Base identity and geometry lock
 
 ```text
 Use case: identity-preserve
-Asset type: polished high-resolution social-media portrait
-Input images: Image 1 is the edit target and must remain the visual base.
-Constraints: Preserve the exact identity, age, facial proportions, expression, head angle, hairstyle unless specified, body size and proportions, pose, hands and fingers, phone and case, crop, camera viewpoint, background objects, and scene geometry. Preserve natural pores and real skin texture.
-Avoid: identity drift, invented hidden facial features, plastic skin, waxy smoothing, excessive whitening, blue-gray skin, anatomy distortion, object changes, extra fingers, added text, logos, or watermarks.
+Asset type: evidence-guided muscle-relighting portrait for social media
+Input images: Image 1 is the sole edit target and exact visual base.
+Constraints: Preserve exact identity, age, ethnicity, facial proportions, expression, head angle, hairstyle, pose, outer body silhouette, shoulder width, chest width and volume, arm width, waist width, torso length, body-fat impression, nipple and navel positions, hands and fingers, phone and case, crop, camera viewpoint, perspective, background objects, and scene geometry. Preserve real pores, fine hair, skin folds, and natural tonal variation.
+Avoid: added muscle mass, broader shoulders, larger chest or arms, narrower waist, fat removal, extra abdominal segments, invented hidden anatomy, body reshaping, identity drift, plastic skin, halos, anatomy distortion, object changes, text, logos, or watermarks.
 ```
 
-## HD cool-white module
+## Source muscle-evidence statement
+
+Before generating, replace the bracketed content with observations from the actual image:
 
 ```text
-Primary request: Increase fine detail and perceived resolution; reduce noise, compression artifacts, muddiness, and color contamination. Correct the strong yellow/orange cast toward a neutral-to-cool white balance. Render skin as naturally luminous cool ivory with controlled highlights, gentle shadow detail, and believable indoor light direction. Preserve pores and fine hair. Avoid crunchy oversharpening, broad blur, blown highlights, and dead-white skin.
+Visible source evidence: [list only genuinely visible pectoral planes/borders, sternum separation, linea alba, abdominal transitions, oblique or serratus hints, deltoid/arm transitions, and pose-driven tension].
+Occluded or unsupported regions: [list areas hidden, blurred, flat-lit, or not visibly defined]. Do not create definition in these regions.
+Dominant source light: [direction, softness, highlight region, and existing shadow direction].
 ```
 
-## Subtle lean-muscle module
+## Default muscle-relighting module
 
 ```text
-Primary request: Based strictly on the existing physique, reveal only very subtle lean-muscle definition using delicate directional light and tonal separation. Keep exact body size, weight, shoulder width, waist width, posture, and body-fat impression. Add a faint pectoral lower edge, a soft central abdominal line, extremely subtle upper-ab and oblique contours, and mild shoulder/upper-arm separation. The result must read as slim and lightly trained. Avoid added mass, a narrower waist, wider shoulders, deep six-pack grooves, vascularity, carved lines, or a bodybuilding look.
+Primary request: Reveal and beautify only the muscle texture and contours already supported by the source. Follow the existing dominant light direction and simulate a soft directional grazing key light with believable ambient fill. Place subtle highlights on existing raised muscle planes and deepen only existing valleys and boundaries with broad feathered shadows. Increase local micro-contrast along supported pectoral, chest-separation, abdominal, oblique, shoulder, and arm transitions without changing any body geometry or muscle volume. Preserve natural softness between muscle groups, continuous light falloff, pores, fine hair, and skin variation. The physique should look clearly more defined and aesthetically pleasing at first glance, yet remain a believable naturally well-lit photograph on close inspection.
+Avoid: drawing dark muscle lines, carving a six-pack, inventing segments, bodybuilding shadows, vascularity, sharp dodge-and-burn edges, conflicting key lights, rim-light cutouts, fat loss, shoulder widening, waist narrowing, chest enlargement, or arm enlargement.
 ```
 
-## Invisible face-refinement module
+## Supporting cleanup module
 
 ```text
-Primary request: Apply extremely subtle, invisible-looking facial refinement. Reduce only distracting forehead shine, brighten the visible under-eye by about 10%, add delicate natural tonal depth along the visible temple and cheek edge, and marginally clarify the visible jaw edge through light and shadow. Slightly neaten excessive hairstyle width while preserving the haircut and hairline. Do not slim the face, reduce cheekbones, point the chin, enlarge the eyes, alter eyebrows, move the hairline, enforce symmetry, or reconstruct obscured features.
+Supporting cleanup: Increase perceived resolution and natural fine detail; reduce mild noise, compression artifacts, muddiness, and color contamination only enough to clarify real muscle texture. Control blown highlights while preserving curvature and shadow separation. Avoid crunchy sharpening, broad skin blur, or flattened torso lighting.
 ```
 
-## Frosted sticker module
+## Optional cool-white module
+
+```text
+Optional color grade: Correct strong yellow or red casts toward healthy natural cool ivory. Keep muscle shadows neutral and separated; preserve pores and local tonal variation. Avoid dead-white, blue-gray, or over-bright skin that erases muscle texture.
+```
+
+## Optional invisible face-refinement module
+
+```text
+Optional face refinement: Reduce only distracting facial shine, lift a tired visible under-eye slightly, and neaten excessive hairstyle width while preserving the exact face and hairline. Do not slim the face, alter cheekbones, point the chin, enlarge eyes, change eyebrows, enforce symmetry, or reconstruct obscured features.
+```
+
+## Optional frosted-cover module
 
 ```text
 Use case: precise-object-edit
-Primary request: Add one small semi-transparent silver-gray frosted smear over the visible eye/upper-face area, positioned as an intentional editorial social-media graphic. Let it overlap the phone edge slightly if natural. Keep the hair silhouette visible and preserve the cool-white premium mood. Change only the sticker area; preserve the person, body, phone, pose, lighting, crop, and background exactly.
-Avoid: cartoon styling, large stickers, crude mosaic pixels, black censor bars, bright saturated colors, text, logos, or watermarks.
+Optional social cover: Add one small semi-transparent silver-gray frosted smear over the requested eye or upper-face area, positioned as an intentional editorial graphic. Keep the hair silhouette visible and the body/lighting edit dominant. Avoid cartoons, crude mosaic pixels, censor bars, saturated colors, text, logos, or watermarks.
 ```
+
+## Validation checklist
+
+Reject or retry when any answer is yes:
+
+- Did the outer body silhouette move?
+- Did shoulders, chest, arms, or waist change width or volume?
+- Did body fat appear removed?
+- Did new abdominal segments appear without source evidence?
+- Do shadows look drawn, hard-edged, or inconsistent with the room light?
+- Did nipples, navel, hands, phone, face, crop, or background move?
+- Did skin lose pores or become plastic?
 
 ## Targeted retry phrases
 
 Use one correction at a time:
 
-- `Reduce the muscle definition by half; restore the original body volume and waist width.`
-- `Restore the source identity and eye shape; keep only the lighting cleanup.`
-- `Restore natural pores and reduce skin smoothing.`
-- `Make the skin less white and more naturally cool ivory.`
-- `Shrink the sticker by 25% and keep the hair silhouette unobstructed.`
-- `Restore the original crop, phone, hand anatomy, and background geometry.`
+- `Restore the exact source silhouette, widths, body volume, and body-fat appearance; keep only evidence-supported relighting.`
+- `Remove all newly invented abdominal segments; enhance only the source-visible linea alba and broad abdominal planes.`
+- `Reduce the relighting contrast by 30% and soften every muscle shadow edge.`
+- `Restore the source light direction; remove conflicting highlights and shadows.`
+- `Restore natural pores and skin softness while preserving the existing muscle separation.`
+- `Restore the original crop, anatomical landmarks, hands, phone, and background geometry.`
