@@ -8,7 +8,7 @@ Read this file for every image edit. Use the muscle-evidence and relighting modu
 Use case: identity-preserve
 Asset type: evidence-guided muscle-relighting portrait for social media
 Input images: Image 1 is the sole edit target and exact visual base.
-Constraints: Preserve exact identity, age, ethnicity, facial proportions, expression, head angle, hairstyle, pose, outer body silhouette, shoulder width, chest width and volume, arm width, waist width, torso length, body-fat impression, nipple and navel positions, hands and fingers, phone and case, crop, camera viewpoint, perspective, background objects, and scene geometry. Preserve real pores, fine hair, skin folds, and natural tonal variation.
+Constraints: Preserve exact identity, age, ethnicity, facial proportions, expression, head angle, hairstyle, pose, outer body silhouette, shoulder width, chest width and volume, arm width, waist width, torso length, body-fat impression, nipple and navel positions, hands and fingers, phone and case, crop, camera viewpoint, perspective, background objects, and scene geometry. Preserve source-visible pores, fine hair, skin folds, natural tonal variation and photographic softness. Keep uncertain or occluded landmarks exactly as visible; do not newly define or reposition a navel or nipple.
 Avoid: added muscle mass, broader shoulders, larger chest or arms, narrower waist, fat removal, extra abdominal segments, invented hidden anatomy, body reshaping, identity drift, plastic skin, halos, anatomy distortion, object changes, text, logos, or watermarks.
 ```
 
@@ -32,7 +32,15 @@ Avoid: drawing dark muscle lines, carving a six-pack, inventing segments, bodybu
 ## Supporting cleanup module
 
 ```text
-Supporting cleanup: Increase perceived resolution and natural fine detail; reduce mild noise, compression artifacts, muddiness, and color contamination only enough to clarify real muscle texture. Control blown highlights while preserving curvature and shadow separation. Avoid crunchy sharpening, broad skin blur, or flattened torso lighting.
+Supporting cleanup: Clarify source-supported broad contours with restrained cleanup. Retain natural snapshot texture, soft skin, some haze and the source's overall exposure and color. Gently control washed-out highlights while preserving curvature and shadow separation. Do not reconstruct missing fine detail, aggressively dehaze, flatten torso lighting, or apply crunchy sharpening or broad skin smoothing.
+```
+
+## Preferred blurry-source clarity module
+
+Use with muscle relighting for blurry sources by default; omit or adjust for an already clear source or an explicit different strength. Treat percentages as perceptual guidance, not a precise numerical guarantee.
+
+```text
+Natural soft-snapshot finish: Work from the ORIGINAL photo. Reduce perceived blur by approximately 50%, retaining about half of its original soft-focus character. Recover only existing edges and broad tonal transitions; do not manufacture sharp pores, individual hairs, camera lenses, phone-case details or denim weave lost to blur. Preserve recognizable haze, window glow, pale/warm exposure if present, and ordinary phone-photo softness. Apply only restrained evidence-supported muscle relighting with broad feathered shadows. The chest and side-abdominal planes should be a little easier to read while the photograph still looks like the original casual snapshot. Keep a flat-lit central abdomen soft; do not invent horizontal ab grooves, new anatomy or a more prominent navel. No high-definition reconstruction, studio finish, crispy edges, plastic skin or sharpening halos.
 ```
 
 ## Optional cool-white module
@@ -65,6 +73,8 @@ Reject or retry when any answer is yes:
 - Do shadows look drawn, hard-edged, or inconsistent with the room light?
 - Did nipples, navel, hands, phone, face, crop, or background move?
 - Did skin lose pores or become plastic?
+- Did the result invent fine detail absent from the source, remove too much softness/haze, or look like a newly reconstructed high-definition photo?
+- Did an uncertain or occluded navel/nipple become newly defined or move relative to the original torso and belt?
 
 ## Targeted retry phrases
 
@@ -76,3 +86,5 @@ Use one correction at a time:
 - `Restore the source light direction; remove conflicting highlights and shadows.`
 - `Restore natural pores and skin softness while preserving the existing muscle separation.`
 - `Restore the original crop, anatomical landmarks, hands, phone, and background geometry.`
+- `Return to the original photo and retain about half its soft-focus character; remove invented fine detail and aggressive dehazing while keeping moderate source-supported clarity.`
+- `Restore the exact source nipple/navel positions and visibility; remove any newly invented or relocated landmark while retaining only gentle chest and side-waist relighting.`

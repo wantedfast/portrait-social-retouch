@@ -1,4 +1,4 @@
 interface:
   display_name: "原生肌肉塑光精修"
-  short_description: "基于原有肌肉证据，通过自然方向光显现真实肌肉纹理与轮廓"
-  default_prompt: "使用 $portrait-social-retouch 基于原图真实肌肉轮廓进行自然塑光显肌，不增加肌肉体积或改变身材比例。"
+  short_description: "保留原图柔和随拍感，适度减轻模糊，以自然光影突出真实肌肉轮廓"
+  default_prompt: "使用 $portrait-social-retouch：模糊照片默认适度减轻约50%的模糊感，保留自然柔和随拍质感，以克制光影突出原有胸腹和侧腰线条，保持体型与身体标志位置，不重建虚假高清细节。"
